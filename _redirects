@@ -1,4 +1,4 @@
-/ventas https://qrdigital.github.io/demoflowlite/ 200
+/ventas/* https://qrdigital.github.io/demoflowlite/ :splat  200!
 /goldenmonk/* https://qrdigital.github.io/goldenmonk/:splat  200!
 /salonyspa/* https://qrdigital.github.io/SalonySpa/:splat 200!
 /dulcecapitas/* https://qrdigital.github.io/dulcecapitas/:splat 200!
