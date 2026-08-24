@@ -1,13 +1,3 @@
-El problema es que en el código anterior el contenedor seguía usando un ancho máximo estrecho (`680px`), por lo que en monitores de PC la página continuaba viéndose como una franja delgada con enormes espacios vacíos a los lados.
-
-Para resolverlo de verdad en pantallas grandes sin romper el formato cuando se abra desde un teléfono, la solución es convertir el diseño en un **layout adaptativo de dos columnas para PC**:
-
-1. **En pantallas de PC:** Las imágenes de las secciones se distribuyen en una cuadrícula amplia de 2 columnas centradas que aprovecha el ancho del monitor (`max-width: 1200px`).
-2. **En celulares:** Se mantiene automáticamente como una sola columna fluida al 100%.
-
-Aquí tienes el código completo actualizado:
-
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -317,4 +307,3 @@ Aquí tienes el código completo actualizado:
 </body>
 </html>
 
-```
