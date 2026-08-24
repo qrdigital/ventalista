@@ -1,3 +1,13 @@
+El problema es que en el código anterior el contenedor seguía usando un ancho máximo estrecho (`680px`), por lo que en monitores de PC la página continuaba viéndose como una franja delgada con enormes espacios vacíos a los lados.
+
+Para resolverlo de verdad en pantallas grandes sin romper el formato cuando se abra desde un teléfono, la solución es convertir el diseño en un **layout adaptativo de dos columnas para PC**:
+
+1. **En pantallas de PC:** Las imágenes de las secciones se distribuyen en una cuadrícula amplia de 2 columnas centradas que aprovecha el ancho del monitor (`max-width: 1200px`).
+2. **En celulares:** Se mantiene automáticamente como una sola columna fluida al 100%.
+
+Aquí tienes el código completo actualizado:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,25 +31,24 @@
 
         body {
             font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #050b08 0%, #0b1510 50%, #12221a 100%);
+            background-color: #0b1510;
             color: #ffffff;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            min-height: 100vh;
-            padding: 20px 0;
+            padding: 40px 20px;
         }
 
+        /* Contenedor principal responsive */
         .container {
             width: 100%;
-            max-width: 680px;
-            background-color: #0b1510;
+            max-width: 1200px; /* Expandido para aprovechar pantallas de PC */
             margin: 0 auto;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-            border-radius: 16px;
-            overflow: hidden;
-            padding-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columnas en PC */
+            gap: 24px;
+            align-items: start;
         }
 
         .section-block {
@@ -49,6 +58,15 @@
             margin: 0;
             padding: 0;
             line-height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            background-color: #0b1510;
+        }
+
+        /* La primera sección (Head) ocupa ambas columnas en PC para destacar */
+        .section-block.head-block {
+            grid-column: 1 / -1;
         }
 
         .product-img {
@@ -99,16 +117,17 @@
             border-left: 10px solid #ffffff;
         }
 
-        /* Área de Pedido con el botón superpuesto al final */
+        /* Área de Pedido con el botón flotante al final ocupando todo el ancho */
         .pedido-container {
             position: relative;
             width: 100%;
-            padding-bottom: 30px;
+            padding-bottom: 40px;
+            grid-column: 1 / -1; /* Ocupa las 2 columnas al final */
         }
 
         .btn-whatsapp-floating {
             position: absolute;
-            bottom: -5px;
+            bottom: 0px;
             left: 50%;
             transform: translateX(-50%);
             display: inline-flex;
@@ -125,7 +144,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
             transition: all 0.3s ease;
             width: 85%;
-            max-width: 420px;
+            max-width: 450px;
             z-index: 20;
             border: 2px solid rgba(255, 255, 255, 0.2);
         }
@@ -190,11 +209,17 @@
             line-height: 1;
         }
 
-        @media (max-width: 680px) {
+        /* Reglas exclusivas para Celulares / Pantallas Pequeñas */
+        @media (max-width: 768px) {
             body {
                 padding: 0;
             }
             .container {
+                grid-template-columns: 1fr; /* Cambia a 1 sola columna en celular */
+                gap: 0;
+                border-radius: 0;
+            }
+            .section-block {
                 border-radius: 0;
                 box-shadow: none;
             }
@@ -215,8 +240,8 @@
 
     <div class="container">
         
-        <!-- 1. Head (Con enlace a WhatsApp para acción inmediata) -->
-        <div class="section-block">
+        <!-- 1. Head (Banner principal superior) -->
+        <div class="section-block head-block">
             <a href="https://wa.me/51920832884?text=Hola,%20deseo%20solicitar%20mi%20VentaLista">
                 <img class="product-img" src="headinformacion.jpg" alt="VentaLista - Head Encabezado">
             </a>
@@ -232,7 +257,7 @@
             <img class="product-img" src="deseoinformacion.jpg" alt="VentaLista - Deseo / Solución">
         </div>
 
-        <!-- 4. Demostración (Boton Ver Demo posicionado en la mujer) -->
+        <!-- 4. Demostración -->
         <div class="section-block demo-container">
             <img class="product-img" src="demostracioninformacion.jpg" alt="VentaLista - Demostración del sistema">
             <button class="btn-ver-demo" onclick="openVideoModal()">
@@ -240,7 +265,7 @@
             </button>
         </div>
 
-        <!-- 5. Pedido / Oferta con Botón WhatsApp montado encima -->
+        <!-- 5. Pedido / Oferta con Botón WhatsApp final -->
         <div class="section-block pedido-container">
             <img class="product-img" src="pedidoinformacion.jpg" alt="VentaLista - Oferta y Pedido">
             
@@ -291,3 +316,5 @@
 
 </body>
 </html>
+
+```
