@@ -21,8 +21,7 @@
 
         body {
             font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
-            /* Fondo degradado suave para PC que integra la landing */
-            background: radial-gradient(circle, #102219 0%, #08100c 100%);
+            background-color: #050b08;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -31,18 +30,15 @@
             padding: 20px 0;
         }
 
-        /* Contenedor central vertical en formato tarjeta para PC */
+        /* Contenedor principal con Grid */
         .container {
             width: 100%;
-            max-width: 720px; /* Ancho idóneo para legibilidad sin encoger textos */
-            background-color: #0b1510;
+            max-width: 1100px;
             margin: 0 auto;
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-items: center;
         }
 
         .section-block {
@@ -52,6 +48,22 @@
             margin: 0;
             padding: 0;
             line-height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            background-color: #0b1510;
+        }
+
+        /* Head y Cierre ocupan el 100% del ancho del contenedor */
+        .section-block.full-width {
+            grid-column: 1 / -1;
+            max-width: 100%;
+        }
+
+        /* Imágenes intermedias centradas con un tamaño legible para lectura en PC */
+        .section-block.medium-width {
+            grid-column: 1 / -1;
+            max-width: 900px;
         }
 
         .product-img {
@@ -63,7 +75,6 @@
         /* Botón Ver Demo superpuesto */
         .demo-container {
             position: relative;
-            width: 100%;
         }
 
         .btn-ver-demo {
@@ -102,10 +113,9 @@
             border-left: 10px solid #ffffff;
         }
 
-        /* Área de Pedido con el botón flotante */
+        /* Área de Pedido / Oferta */
         .pedido-container {
             position: relative;
-            width: 100%;
             padding-bottom: 30px;
         }
 
@@ -193,16 +203,18 @@
             line-height: 1;
         }
 
-        /* Adaptación fluida para smartphones */
-        @media (max-width: 720px) {
+        /* Vista en Smartphones */
+        @media (max-width: 768px) {
             body {
                 padding: 0;
-                background: #0b1510;
             }
             .container {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .section-block {
                 border-radius: 0;
                 box-shadow: none;
-                border: none;
             }
             .btn-ver-demo {
                 font-size: 13px;
@@ -221,33 +233,33 @@
 
     <div class="container">
         
-        <!-- 1. Head -->
-        <div class="section-block">
+        <!-- 1. Head (Ancho completo) -->
+        <div class="section-block full-width">
             <a href="https://wa.me/51920832884?text=Hola,%20deseo%20solicitar%20mi%20VentaLista">
                 <img class="product-img" src="headinformacion.jpg" alt="VentaLista - Head Encabezado">
             </a>
         </div>
 
-        <!-- 2. Dolor -->
-        <div class="section-block">
+        <!-- 2. Dolor (Ancho intermedio legible) -->
+        <div class="section-block medium-width">
             <img class="product-img" src="dolorinformacion.jpg" alt="VentaLista - Problema / Dolor">
         </div>
 
-        <!-- 3. Deseo -->
-        <div class="section-block">
+        <!-- 3. Deseo (Ancho intermedio legible) -->
+        <div class="section-block medium-width">
             <img class="product-img" src="deseoinformacion.jpg" alt="VentaLista - Deseo / Solución">
         </div>
 
-        <!-- 4. Demostración -->
-        <div class="section-block demo-container">
+        <!-- 4. Demostración (Ancho intermedio legible) -->
+        <div class="section-block medium-width demo-container">
             <img class="product-img" src="demostracioninformacion.jpg" alt="VentaLista - Demostración del sistema">
             <button class="btn-ver-demo" onclick="openVideoModal()">
                 <span class="play-icon"></span> Ver Demo
             </button>
         </div>
 
-        <!-- 5. Pedido / Oferta -->
-        <div class="section-block pedido-container">
+        <!-- 5. Pedido / Oferta (Ancho completo) -->
+        <div class="section-block full-width pedido-container">
             <img class="product-img" src="pedidoinformacion.jpg" alt="VentaLista - Oferta y Pedido">
             
             <a href="https://wa.me/51920832884?text=Hola,%20deseo%20solicitar%20mi%20VentaLista" class="btn-whatsapp-floating" target="_blank">
