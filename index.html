@@ -21,24 +21,28 @@
 
         body {
             font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #0b1510;
+            /* Fondo degradado suave para PC que integra la landing */
+            background: radial-gradient(circle, #102219 0%, #08100c 100%);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 40px 20px;
+            padding: 20px 0;
         }
 
-        /* Contenedor principal responsive */
+        /* Contenedor central vertical en formato tarjeta para PC */
         .container {
             width: 100%;
-            max-width: 1200px; /* Expandido para aprovechar pantallas de PC */
+            max-width: 720px; /* Ancho idóneo para legibilidad sin encoger textos */
+            background-color: #0b1510;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columnas en PC */
-            gap: 24px;
-            align-items: start;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 20px;
         }
 
         .section-block {
@@ -48,15 +52,6 @@
             margin: 0;
             padding: 0;
             line-height: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            background-color: #0b1510;
-        }
-
-        /* La primera sección (Head) ocupa ambas columnas en PC para destacar */
-        .section-block.head-block {
-            grid-column: 1 / -1;
         }
 
         .product-img {
@@ -65,7 +60,7 @@
             display: block;
         }
 
-        /* Botón Ver Demo superpuesto en el banner de Demostración */
+        /* Botón Ver Demo superpuesto */
         .demo-container {
             position: relative;
             width: 100%;
@@ -107,17 +102,16 @@
             border-left: 10px solid #ffffff;
         }
 
-        /* Área de Pedido con el botón flotante al final ocupando todo el ancho */
+        /* Área de Pedido con el botón flotante */
         .pedido-container {
             position: relative;
             width: 100%;
-            padding-bottom: 40px;
-            grid-column: 1 / -1; /* Ocupa las 2 columnas al final */
+            padding-bottom: 30px;
         }
 
         .btn-whatsapp-floating {
             position: absolute;
-            bottom: 0px;
+            bottom: -5px;
             left: 50%;
             transform: translateX(-50%);
             display: inline-flex;
@@ -134,7 +128,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
             transition: all 0.3s ease;
             width: 85%;
-            max-width: 450px;
+            max-width: 420px;
             z-index: 20;
             border: 2px solid rgba(255, 255, 255, 0.2);
         }
@@ -199,19 +193,16 @@
             line-height: 1;
         }
 
-        /* Reglas exclusivas para Celulares / Pantallas Pequeñas */
-        @media (max-width: 768px) {
+        /* Adaptación fluida para smartphones */
+        @media (max-width: 720px) {
             body {
                 padding: 0;
+                background: #0b1510;
             }
             .container {
-                grid-template-columns: 1fr; /* Cambia a 1 sola columna en celular */
-                gap: 0;
-                border-radius: 0;
-            }
-            .section-block {
                 border-radius: 0;
                 box-shadow: none;
+                border: none;
             }
             .btn-ver-demo {
                 font-size: 13px;
@@ -230,8 +221,8 @@
 
     <div class="container">
         
-        <!-- 1. Head (Banner principal superior) -->
-        <div class="section-block head-block">
+        <!-- 1. Head -->
+        <div class="section-block">
             <a href="https://wa.me/51920832884?text=Hola,%20deseo%20solicitar%20mi%20VentaLista">
                 <img class="product-img" src="headinformacion.jpg" alt="VentaLista - Head Encabezado">
             </a>
@@ -255,7 +246,7 @@
             </button>
         </div>
 
-        <!-- 5. Pedido / Oferta con Botón WhatsApp final -->
+        <!-- 5. Pedido / Oferta -->
         <div class="section-block pedido-container">
             <img class="product-img" src="pedidoinformacion.jpg" alt="VentaLista - Oferta y Pedido">
             
@@ -306,4 +297,3 @@
 
 </body>
 </html>
-
