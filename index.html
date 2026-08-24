@@ -21,21 +21,24 @@
 
         body {
             font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #0b1510;
+            background: linear-gradient(135deg, #050b08 0%, #0b1510 50%, #12221a 100%);
             color: #ffffff;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
+            padding: 20px 0;
         }
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 680px;
             background-color: #0b1510;
             margin: 0 auto;
             position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border-radius: 16px;
+            overflow: hidden;
             padding-bottom: 20px;
         }
 
@@ -54,7 +57,7 @@
             display: block;
         }
 
-        /* Botón Ver Demo superpuesto en el banner de Demostración (donde indica la flecha) */
+        /* Botón Ver Demo superpuesto en el banner de Demostración */
         .demo-container {
             position: relative;
             width: 100%;
@@ -63,13 +66,13 @@
         .btn-ver-demo {
             position: absolute;
             top: 72%;
-            right: 12%;
+            right: 8%;
             transform: translateY(-50%);
             background-color: #25D366;
             color: #ffffff;
             font-weight: bold;
-            font-size: 15px;
-            padding: 10px 20px;
+            font-size: 16px;
+            padding: 12px 24px;
             border-radius: 25px;
             border: 2px solid #ffffff;
             cursor: pointer;
@@ -187,10 +190,18 @@
             line-height: 1;
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 680px) {
+            body {
+                padding: 0;
+            }
+            .container {
+                border-radius: 0;
+                box-shadow: none;
+            }
             .btn-ver-demo {
                 font-size: 13px;
                 padding: 8px 14px;
+                right: 5%;
             }
             .btn-whatsapp-floating {
                 font-size: 16px;
